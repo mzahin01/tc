@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maxlive/app/shared/widget/bottom_sheet/bottom_sheet_util.dart';
+
+import '../bottom_sheet/bottom_sheet_util.dart';
 
 class ConfirmationPopScope extends StatelessWidget {
   const ConfirmationPopScope({
@@ -17,6 +18,7 @@ class ConfirmationPopScope extends StatelessWidget {
   Widget build(final BuildContext context) {
     return PopScope(
       canPop: canPop,
+      // ignore: deprecated_member_use
       onPopInvoked: (final bool isPopped) {
         if (isPopped) {
           return;
