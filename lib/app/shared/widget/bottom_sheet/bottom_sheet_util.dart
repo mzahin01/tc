@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maxlive/app/shared/widget/bottom_sheet/bottom_sheet_container.dart';
-import 'package:maxlive/app/styles/spacing.dart';
+import '../../../styles/spacing.dart';
+import 'bottom_sheet_container.dart';
 
 class BottomSheetUtil extends GetxService {
   static BottomSheetUtil get to => Get.find();

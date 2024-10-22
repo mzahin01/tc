@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maxlive/app/shared/widget/button/bar_button.dart';
-import 'package:maxlive/app/styles/colors.dart';
-import 'package:maxlive/app/styles/spacing.dart';
-import 'package:maxlive/app/styles/text_styles.dart';
+
+import '../../../styles/colors.dart';
+import '../../../styles/spacing.dart';
+import '../../../styles/text_styles.dart';
+import '../button/bar_button.dart';
 
 class BottomSheetContainer extends StatelessWidget {
   const BottomSheetContainer({

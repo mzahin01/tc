@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maxlive/app/styles/colors.dart';
-import 'package:maxlive/app/styles/spacing.dart';
-import 'package:maxlive/app/styles/text_styles.dart';
+import '../../../styles/colors.dart';
+import '../../../styles/spacing.dart';
+import '../../../styles/text_styles.dart';
 
 class BarButton extends StatelessWidget {
   const BarButton({

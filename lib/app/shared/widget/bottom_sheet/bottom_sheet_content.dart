@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maxlive/app/shared/widget/button/bar_button.dart';
-import 'package:maxlive/app/shared/widget/text_field/general_text_field.dart';
-import 'package:maxlive/app/styles/colors.dart';
-import 'package:maxlive/app/styles/spacing.dart';
-import 'package:maxlive/app/styles/text_styles.dart';
+import '../../../styles/colors.dart';
+import '../../../styles/spacing.dart';
+import '../../../styles/text_styles.dart';
+import '../button/bar_button.dart';
+import '../text_field/general_text_field.dart';
 
 class BottomSheetContent extends StatelessWidget {
   const BottomSheetContent({super.key, required this.child});

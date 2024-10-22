@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:maxlive/app/shared/widget/container/circle_container.dart';
-import 'package:maxlive/app/styles/colors.dart';
+import '../../../styles/colors.dart';
+import '../container/circle_container.dart';
 
 class BottomSheetHeader extends StatelessWidget {
   const BottomSheetHeader({super.key, required this.child});
