@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maxlive/app/shared/widget/loader/loader.dart';
-import 'package:maxlive/app/styles/colors.dart';
+import '../../../styles/colors.dart';
+import '../loader/loader.dart';
 
 class CrossfadeWrapperContainer extends StatelessWidget {
   const CrossfadeWrapperContainer({
