@@ -28,53 +28,46 @@ class HomeView extends GetView<HomeController> {
 
   // Mobile layout
   Widget buildMobileView() {
-    return Column(
-      key: ValueKey(Get.width),
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Welcome to TrainSheba (Mobile)',
-          style: TextStyle(fontSize: 16),
-        ),
-        Text(
-          Get.width.toString(),
-          style: const TextStyle(fontSize: 14),
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Welcome to TrainSheba (Mobile)',
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
+      ),
     );
   }
 
   // Tablet layout
   Widget buildTabletView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Welcome to TrainSheba (Tablet)',
-          style: TextStyle(fontSize: 18),
-        ),
-        Text(
-          'Screen Width: ',
-          style: const TextStyle(fontSize: 16),
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Welcome to TrainSheba (Tablet)',
+            style: TextStyle(fontSize: 18),
+          ),
+        ],
+      ),
     );
   }
 
   // Desktop layout
   Widget buildDesktopView() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Welcome to TrainSheba (Desktop)',
-          style: TextStyle(fontSize: 20),
-        ),
-        Text(
-          'Screen Width: ',
-          style: const TextStyle(fontSize: 18),
-        ),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Welcome to TrainSheba (Desktop)',
+            style: TextStyle(fontSize: 20),
+          ),
+        ],
+      ),
     );
   }
 }
