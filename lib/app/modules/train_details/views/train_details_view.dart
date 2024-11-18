@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/response_view.dart';
 import '../controllers/train_details_controller.dart';
-import '../widget/info_bar.dart';
-import '../widget/train_card.dart';
+import '../widget/gray_info_bar.dart';
+import '../widget/single_train_card.dart';
 
 class TrainDetailsView extends GetView<TrainDetailsController> {
   const TrainDetailsView({super.key});
