@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/response_view.dart';
-import 'package:tc/app/styles/spacing.dart';
-
 import '../controllers/train_details_controller.dart';
+import '../widget/info_bar.dart';
 
 class TrainDetailsView extends GetView<TrainDetailsController> {
   const TrainDetailsView({super.key});
@@ -14,8 +12,7 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
     return Scaffold(
       appBar: AppBar(),
       body: Obx(() {
-        return Padding(
-          padding: const EdgeInsets.all(Spacing.xxlarge),
+        return SingleChildScrollView(
           child: CrossfadeWrapperContainer(
             visible: !controller.isLoading.value,
             loaderHeight: Get.height,
@@ -39,8 +36,29 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
 
   // Tablet layout
   Widget buildTabletView() {
-    return Center(
-      child: Text('data'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InfoBar(controller: controller),
+        SizedBox(height: 25),
+        Container(
+          margin: const EdgeInsets.all(10),
+          height: 500,
+          width: Get.width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                spreadRadius: 5,
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 

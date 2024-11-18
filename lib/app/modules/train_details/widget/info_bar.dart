@@ -28,9 +28,11 @@ class InfoBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                    'From: ${controller.from.value} To: ${controller.to.value}'),
+                    // 'From: ${controller.from.value} To: ${controller.to.value}'),
+                    'From: ${controller.data.value?.data?.trains?[0].originCityName} To: ${controller.data.value?.data?.trains?[0].destinationCityName}'),
                 SizedBox(height: 10),
-                Text('Date: ${controller.date.value}'),
+                Text(
+                    'Date: ${controller.data.value?.data?.trains?[0].departureFullDate}'),
               ],
             ),
             Column(
