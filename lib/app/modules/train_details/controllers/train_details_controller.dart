@@ -1,31 +1,49 @@
+// ignore_for_file: avoid_print
+
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/train_details_response/train_details_response.dart';
+
 class TrainDetailsController extends GetxController {
   RxBool isLoading = false.obs;
-
-  late RxnString from;
-  late RxnString to;
-  late RxnString date;
-  late RxnString travelClass;
+  RxnString from = RxnString(null);
+  RxnString to = RxnString(null);
+  RxnString date = RxnString(null);
+  RxnString travelClass = RxnString(null);
+  Rxn<TrainDetailsResponse> data = Rxn<TrainDetailsResponse>();
 
   @override
   void onInit() {
     super.onInit();
-
     // Extracting values from Get.arguments
-    String from = Get.arguments['from'] ?? '';
-    String to = Get.arguments['to'] ?? '';
-    String date = Get.arguments['date'] ?? '';
-    String travelClass = Get.arguments['class'] ?? '';
+    from.value = Get.arguments['from'] ?? '';
+    to.value = Get.arguments['to'] ?? '';
+    date.value = Get.arguments['date'] ?? '';
+    travelClass.value = Get.arguments['class'] ?? '';
 
-    // Construct the URL
-    String baseURL =
-        'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2';
-    String fullURL =
-        '$baseURL?from_city=${Uri.encodeComponent(from)}&to_city=${Uri.encodeComponent(to)}&date_of_journey=${Uri.encodeComponent(date)}&seat_class=${Uri.encodeComponent(travelClass)}';
+    // // Construct the URL
+    // String baseURL =
+    //     'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2';
+    // String fullURL =
+    //     '$baseURL?from_city=${Uri.encodeComponent(from.value ?? '')}&to_city=${Uri.encodeComponent(to.value ?? '')}&date_of_journey=${Uri.encodeComponent(date.value ?? '')}&seat_class=${Uri.encodeComponent(travelClass.value ?? '')}';
+    // fetchTrainDetails(fullURL);
 
-    fetchTrainDetails(fullURL);
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    try {
+      final String jsonString =
+          await rootBundle.loadString('assets/json/work_model.json');
+      final Map<String, dynamic> jsonResponse = json.decode(jsonString);
+      data.value = TrainDetailsResponse.fromJson(jsonResponse);
+    } catch (e) {
+      print('An error occurred: $e');
+    }
   }
 
   Future<void> fetchTrainDetails(String fullURL) async {
@@ -48,24 +66,4 @@ class TrainDetailsController extends GetxController {
       print('An error occurred: $e');
     }
   }
-
-  // isLoading.value = true;
-  // try {
-  //   // Fetch train details
-  //   final response = await http.get(Uri.parse(fullURL));
-  //   if (response.statusCode == 200) {
-  //     // Parse the response
-  //     final data = jsonDecode(response.body);
-  //     // Handle the parsed data
-  //     print(data);
-  //   } else {
-  //     print('Failed to load train details');
-  //   }
-  // } catch (e) {
-  //   print('Error: $e');
-  //   // print(fullURL);
-  // } finally {
-  //   isLoading.value = false;
-  // }
-  // }
 }
