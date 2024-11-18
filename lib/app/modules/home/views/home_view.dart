@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/response_view.dart';
 import 'package:tc/app/styles/spacing.dart';
+import '../../../shared/widget/text_field/general_text_field.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/dpd_button.dart';
 
@@ -85,15 +86,19 @@ class HomeView extends GetView<HomeController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DPDButton(
-                items: controller.seatClass,
-                selectedValue: controller.selectedClass.value,
-                onChanged: (value) {
-                  controller.selectedClass.value = value;
-                },
-                searchController: controller.seatClasstext,
-                hintText: 'Choose a Date',
-                searchHint: 'Search Date',
+              SizedBox(
+                width: 210,
+                child: TextFieldWidget.oneLine(
+                  borderColor: Colors.grey,
+                  showCursor: false,
+                  hintText: 'Date',
+                  hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                  controller: controller.dateText,
+                  ontap: () {
+                    controller.selectDate();
+                  },
+                  height: 40,
+                ),
               ),
               SizedBox(width: 25),
               DPDButton(

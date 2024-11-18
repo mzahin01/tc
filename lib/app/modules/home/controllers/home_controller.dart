@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
@@ -41,14 +44,7 @@ class HomeController extends GetxController {
   RxnString toStation = RxnString(null);
   TextEditingController fromStationText = TextEditingController();
   TextEditingController toStationText = TextEditingController();
-
-  // void setSelectedStation(String value) {
-  //   fromStation.value = value;
-  // }
-
-  // void setToStation(String value) {
-  //   toStation.value = value;
-  // }
+  TextEditingController dateText = TextEditingController();
 
   final List<String> seatClass = [
     'AC_B',
@@ -66,10 +62,19 @@ class HomeController extends GetxController {
   RxnString selectedClass = RxnString(null);
   TextEditingController seatClasstext = TextEditingController();
 
-  // // Function to update the selected value
-  // void setClass(String value) {
-  //   selectedseatClass.value = value;
-  // }
+  selectDate() {
+    showDatePicker(
+      context: Get.context!,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    ).then((value) {
+      if (value != null) {
+        String month = DateFormat.MMM().format(value);
+        dateText.text = "${value.day}-$month-${value.year}";
+      }
+    });
+  }
 
   void save() {
     print('From: ${fromStation.value}');
