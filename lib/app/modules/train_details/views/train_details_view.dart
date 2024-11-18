@@ -11,20 +11,23 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
   const TrainDetailsView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Padding(
-        padding: const EdgeInsets.all(Spacing.xxlarge),
-        child: CrossfadeWrapperContainer(
-          visible: !controller.isLoading.value,
-          loaderHeight: Get.height,
-          child: ResponsiveWidget<TrainDetailsController>(
-            pc: buildDesktopView(),
-            tab: buildTabletView(),
-            mobile: buildMobileView(),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Obx(() {
+        return Padding(
+          padding: const EdgeInsets.all(Spacing.xxlarge),
+          child: CrossfadeWrapperContainer(
+            visible: !controller.isLoading.value,
+            loaderHeight: Get.height,
+            child: ResponsiveWidget<TrainDetailsController>(
+              pc: buildDesktopView(),
+              tab: buildTabletView(),
+              mobile: buildMobileView(),
+            ),
           ),
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 
   // Mobile layout
