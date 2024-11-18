@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../model/train_details_response/train_details_response.dart';
 
+import 'package:http/http.dart' as http;
+
 class TrainDetailsController extends GetxController {
   RxBool isLoading = false.obs;
   RxnString from = RxnString(null);
@@ -21,15 +23,14 @@ class TrainDetailsController extends GetxController {
     to.value = Get.arguments['to'] ?? '';
     date.value = Get.arguments['date'] ?? '';
     travelClass.value = Get.arguments['class'] ?? '';
-
-    // // Construct the URL
-    // String baseURL =
-    //     'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2';
-    // String fullURL =
-    //     '$baseURL?from_city=${Uri.encodeComponent(from.value ?? '')}&to_city=${Uri.encodeComponent(to.value ?? '')}&date_of_journey=${Uri.encodeComponent(date.value ?? '')}&seat_class=${Uri.encodeComponent(travelClass.value ?? '')}';
-    // fetchTrainDetails(fullURL);
-
     loadData();
+
+    // Construct the URL
+    String baseURL =
+        'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2';
+    String fullURL =
+        '$baseURL?from_city=${Uri.encodeComponent(from.value ?? '')}&to_city=${Uri.encodeComponent(to.value ?? '')}&date_of_journey=${Uri.encodeComponent(date.value ?? '')}&seat_class=${Uri.encodeComponent(travelClass.value ?? '')}';
+    fetchTrainDetails(fullURL);
   }
 
   Future<void> loadData() async {
@@ -44,24 +45,19 @@ class TrainDetailsController extends GetxController {
     }
   }
 
-  // Future<void> fetchTrainDetails(String fullURL) async {
-  //   try {
-  //     final response = await http.get(
-  //       Uri.parse(fullURL),
-  //       headers: {
-  //         'User-Agent':
-  //             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36',
-  //         'Accept': '*/*',
-  //       },
-  //     );
+  Future<void> fetchTrainDetails(String fullURL) async {
+    try {
+      final response = await http.get(
+        Uri.parse(fullURL),
+      );
 
-  //     if (response.statusCode == 200) {
-  //       print('Response: ${response.body}');
-  //     } else {
-  //       print('Error: ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     print('An error occurred: $e');
-  //   }
-  // }
+      if (response.statusCode == 200) {
+        print('Response: ${response.body}');
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+  }
 }

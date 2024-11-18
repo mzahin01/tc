@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tc/app/shared/const/image_asset.dart';
+import 'package:tc/app/styles/colors.dart';
 import '../controllers/train_details_controller.dart';
 
 class InfoBar extends StatelessWidget {
@@ -15,9 +16,12 @@ class InfoBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: Get.width,
-        height: 120,
-        color: Colors.black12,
-        padding: EdgeInsets.only(left: 40, right: 40),
+        height: 140,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: SGColors.whiteShade3,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +40,7 @@ class InfoBar extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {
