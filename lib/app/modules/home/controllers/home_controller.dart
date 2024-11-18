@@ -79,6 +79,7 @@ class HomeController extends GetxController {
   void save() {
     print('From: ${fromStation.value}');
     print('To: ${toStation.value}');
+    print('Date: ${dateText.text}');
     print('Class: ${selectedClass.value}');
   }
 }

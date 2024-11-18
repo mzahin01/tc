@@ -35,10 +35,65 @@ class HomeView extends GetView<HomeController> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             'Welcome to TrainSheba (Mobile)',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(height: 40),
+          DPDButton(
+            items: controller.stationNames,
+            selectedValue: controller.fromStation.value,
+            onChanged: (value) {
+              controller.fromStation.value = value;
+            },
+            searchController: controller.seatClasstext,
+            hintText: 'Where From',
+            searchHint: 'Where From',
+          ),
+          SizedBox(width: 25),
+          DPDButton(
+            items: controller.stationNames,
+            selectedValue: controller.toStation.value,
+            onChanged: (value) {
+              controller.toStation.value = value;
+            },
+            searchController: controller.seatClasstext,
+            hintText: 'Where to',
+            searchHint: 'Where to',
+          ),
+          SizedBox(
+            width: 210,
+            child: TextFieldWidget.oneLine(
+              borderColor: Colors.grey,
+              showCursor: false,
+              hintText: 'Date',
+              hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+              controller: controller.dateText,
+              ontap: () {
+                controller.selectDate();
+              },
+              height: 40,
+            ),
+          ),
+          SizedBox(width: 25),
+          DPDButton(
+            items: controller.seatClass,
+            selectedValue: controller.selectedClass.value,
+            onChanged: (value) {
+              controller.selectedClass.value = value;
+            },
+            searchController: controller.seatClasstext,
+            hintText: 'Choose a Class',
+            searchHint: 'Search Class',
+          ),
+          SizedBox(height: 25),
+          ElevatedButton(
+            onPressed: () {
+              controller.save();
+            },
+            child: const Text('Search'),
           ),
         ],
       ),
@@ -130,10 +185,75 @@ class HomeView extends GetView<HomeController> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             'Welcome to TrainSheba (Desktop)',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
+          ),
+          SizedBox(height: 40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DPDButton(
+                items: controller.stationNames,
+                selectedValue: controller.fromStation.value,
+                onChanged: (value) {
+                  controller.fromStation.value = value;
+                },
+                searchController: controller.seatClasstext,
+                hintText: 'Where From',
+                searchHint: 'Where From',
+              ),
+              SizedBox(width: 25),
+              DPDButton(
+                items: controller.stationNames,
+                selectedValue: controller.toStation.value,
+                onChanged: (value) {
+                  controller.toStation.value = value;
+                },
+                searchController: controller.seatClasstext,
+                hintText: 'Where to',
+                searchHint: 'Where to',
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 210,
+                child: TextFieldWidget.oneLine(
+                  borderColor: Colors.grey,
+                  showCursor: false,
+                  hintText: 'Date',
+                  hintStyle: TextStyle(color: Colors.black, fontSize: 14),
+                  controller: controller.dateText,
+                  ontap: () {
+                    controller.selectDate();
+                  },
+                  height: 40,
+                ),
+              ),
+              SizedBox(width: 25),
+              DPDButton(
+                items: controller.seatClass,
+                selectedValue: controller.selectedClass.value,
+                onChanged: (value) {
+                  controller.selectedClass.value = value;
+                },
+                searchController: controller.seatClasstext,
+                hintText: 'Choose a Class',
+                searchHint: 'Search Class',
+              ),
+            ],
+          ),
+          SizedBox(height: 25),
+          ElevatedButton(
+            onPressed: () {
+              controller.save();
+            },
+            child: const Text('Search'),
           ),
         ],
       ),
