@@ -14,13 +14,15 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
       appBar: AppBar(),
       body: Obx(() {
         return SingleChildScrollView(
-          child: CrossfadeWrapperContainer(
-            visible: !controller.isLoading.value,
-            loaderHeight: Get.height,
-            child: ResponsiveWidget<TrainDetailsController>(
-              pc: buildDesktopView(),
-              tab: buildTabletView(),
-              mobile: buildMobileView(),
+          child: Center(
+            child: CrossfadeWrapperContainer(
+              visible: !controller.isLoading.value,
+              loaderHeight: Get.height,
+              child: ResponsiveWidget<TrainDetailsController>(
+                pc: buildDesktopView(),
+                tab: buildTabletView(),
+                mobile: buildMobileView(),
+              ),
             ),
           ),
         );
@@ -30,8 +32,14 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
 
   // Mobile layout
   Widget buildMobileView() {
-    return Center(
-      child: Text('datajb'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InfoBar(controller: controller),
+        SizedBox(height: 25),
+        SingleTrainWidget(controller: controller)
+      ],
     );
   }
 
@@ -50,8 +58,14 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
 
   // Desktop layout
   Widget buildDesktopView() {
-    return Center(
-      child: Text('data'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        InfoBar(controller: controller),
+        SizedBox(height: 25),
+        SingleTrainWidget(controller: controller)
+      ],
     );
   }
 }

@@ -103,6 +103,7 @@ class HomeView extends GetView<HomeController> {
             },
             child: const Text('Search'),
           ),
+          SizedBox(height: 25),
         ],
       ),
     );
@@ -188,6 +189,7 @@ class HomeView extends GetView<HomeController> {
             },
             child: const Text('Search'),
           ),
+          SizedBox(height: 25),
         ],
       ),
     );
@@ -273,6 +275,7 @@ class HomeView extends GetView<HomeController> {
             },
             child: const Text('Search'),
           ),
+          SizedBox(height: 25),
         ],
       ),
     );
