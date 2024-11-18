@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:tc/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
@@ -77,9 +78,11 @@ class HomeController extends GetxController {
   }
 
   void save() {
-    print('From: ${fromStation.value}');
-    print('To: ${toStation.value}');
-    print('Date: ${dateText.text}');
-    print('Class: ${selectedClass.value}');
+    Get.toNamed(Routes.TRAIN_DETAILS, arguments: {
+      'from': fromStation.value,
+      'to': toStation.value,
+      'date': dateText.text,
+      'class': selectedClass.value,
+    });
   }
 }
