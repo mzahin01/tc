@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../model/train_details_response/train_details_response.dart';
