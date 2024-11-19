@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tc/app/shared/const/image_asset.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
-import 'package:tc/app/shared/widget/response_view.dart';
+import 'package:tc/app/shared/widget/responseive_view/response_view.dart';
 import 'package:tc/app/styles/spacing.dart';
 import '../../../shared/widget/text_field/general_text_field.dart';
 import '../controllers/home_controller.dart';
