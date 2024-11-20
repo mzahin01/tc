@@ -25,13 +25,6 @@ class TrainDetailsController extends GetxController {
     to.value = Get.arguments['to'] ?? '';
     date.value = Get.arguments['date'] ?? '';
     travelClass.value = Get.arguments['class'] ?? '';
-
-    // Construct the URL
-    // String baseURL =
-    //     'https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2';
-    // String fullURL =
-    //     '$baseURL?from_city=${Uri.encodeComponent(from.value ?? '')}&to_city=${Uri.encodeComponent(to.value ?? '')}&date_of_journey=${Uri.encodeComponent(date.value ?? '')}&seat_class=${Uri.encodeComponent(travelClass.value ?? '')}';
-    // fetchTrainDetails(fullURL);
   }
 
   Future<void> loadData() async {
