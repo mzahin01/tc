@@ -25,6 +25,7 @@ class TrainDetailsController extends GetxController {
     to.value = Get.arguments['to'] ?? '';
     date.value = Get.arguments['date'] ?? '';
     travelClass.value = Get.arguments['class'] ?? '';
+    //again
   }
 
   Future<void> loadData() async {
