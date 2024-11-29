@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -72,7 +71,8 @@ class HomeController extends GetxController {
     ).then((value) {
       if (value != null) {
         String month = DateFormat.MMM().format(value);
-        dateText.text = "${value.day}-$month-${value.year}";
+        dateText.text =
+            "${value.day.toString().padLeft(2, '0')}-$month-${value.year}";
       }
     });
   }

@@ -14,7 +14,8 @@ class InfoBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() {
+      return Container(
         width: Get.width,
         height: 140,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -38,33 +39,9 @@ class InfoBar extends StatelessWidget {
                     'Date: ${controller.data.value?.data?.trains?[0].departureFullDate}'),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Button 1 action
-                  },
-                  child: Text('What am'),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Button 2 action
-                  },
-                  child: Text('I doing'),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    // Button 3 action
-                  },
-                  child: Text('here?'),
-                ),
-              ],
-            )
           ],
-        ));
+        ),
+      );
+    });
   }
 }

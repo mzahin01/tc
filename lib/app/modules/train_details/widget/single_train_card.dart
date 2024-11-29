@@ -13,61 +13,69 @@ class SingleTrainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (int j = 0;
-            j < (controller.data.value?.data?.trains?.length.toInt() ?? 0);
-            j++)
-          Container(
-            margin: const EdgeInsets.all(10),
-            width: Get.width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  spreadRadius: 5,
-                ),
-              ],
+    return Obx(() {
+      if (controller.data.value == null) {
+        return CircularProgressIndicator();
+      }
+      return Column(
+        children: [
+          for (int j = 0;
+              j < (controller.data.value?.data?.trains?.length.toInt() ?? 0);
+              j++)
+            Container(
+              margin: const EdgeInsets.all(10),
+              width: Get.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 5,
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  TrainTitle(
+                    controller: controller,
+                    j: j,
+                  ),
+                  LeavingDurArriving(
+                    controller: controller,
+                    j: j,
+                  ),
+                  Divider(
+                    color: Colors.black,
+                    thickness: 1,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (int i = 0;
+                            i <
+                                (controller.data.value?.data?.trains?[j]
+                                        .seatTypes?.length
+                                        .toInt() ??
+                                    0);
+                            i++)
+                          SeatTypeDetails(
+                            controller: controller,
+                            i: i,
+                            j: j,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              children: [
-                TrainTitle(
-                  controller: controller,
-                  j: j,
-                ),
-                LeavingDurArriving(
-                  controller: controller,
-                  j: j,
-                ),
-                Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (int i = 0;
-                        i <
-                            (controller.data.value?.data?.trains?[j].seatTypes
-                                    ?.length
-                                    .toInt() ??
-                                0);
-                        i++)
-                      SeatTypeDetails(
-                        controller: controller,
-                        i: i,
-                        j: j,
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }
 
