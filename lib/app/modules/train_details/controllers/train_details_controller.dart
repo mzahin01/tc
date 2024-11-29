@@ -1,6 +1,5 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../model/train_details_response/train_details_response.dart';
 
@@ -37,6 +36,10 @@ class TrainDetailsController extends GetxController {
   }
 
   Future<void> fetchTrainDetails(String fullURL) async {
+    if (kDebugMode) {
+      print(fullURL);
+    }
+
     try {
       final response = await http.get(
         Uri.parse(fullURL),
@@ -50,13 +53,16 @@ class TrainDetailsController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        print('Response: ${response.body}');
         data.value = TrainDetailsResponse.fromJson(jsonDecode(response.body));
       } else {
-        print('Error: ${response.statusCode}');
+        if (kDebugMode) {
+          print('Error: ${response.statusCode}');
+        }
       }
     } catch (e) {
-      print('An error occurred: $e');
+      if (kDebugMode) {
+        print('An error occurred: $e');
+      }
     }
   }
 }
