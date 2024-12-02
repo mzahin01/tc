@@ -1,4 +1,4 @@
-List<String> d2chapai = [
+List<String> allTrains = [
   "Abdulpur",
   "Adv. Motiur Rahman",
   "Akhaura",
