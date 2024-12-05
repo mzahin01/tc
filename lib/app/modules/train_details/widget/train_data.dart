@@ -58,34 +58,17 @@ List<String> d2n = [
 
 List<String> d2syl = [
   "Dhaka",
-  "Biman_Bandar",
-  "Narsingdi",
-  "Bhairab_Bazar",
-  "Ashuganj",
+  "Biman Bandar",
+  "Bhairab Bazar",
   "Brahmanbaria",
   "Azampur",
-  "Mukundapur",
-  "Harashpur",
-  "Montola",
   "Nayapara",
-  "Shahaji_Bazar",
   "Shaistaganj",
   "Sreemangal",
   "Bhanugach",
-  "Shamshernagar",
   "Kulaura",
   "Maijgaon",
-  "Sylhet",
-  "Akhaura",
-  "Quasba",
-  "Cumilla",
-  "Laksam",
-  "Natherpetua",
-  "Sonaimuri",
-  "Bajra",
-  "Choumuhani",
-  "Maijdi Court",
-  "Noakhali"
+  "Sylhet"
 ];
 
 List<String> d2khulna = [
