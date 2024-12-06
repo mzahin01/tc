@@ -10,7 +10,7 @@ class Tuple {
 }
 
 void main() {
-  List<String> FT = [
+  List<String> ft = [
     "Narsingdi",
     "Brahmanbaria",
   ];
@@ -30,12 +30,14 @@ void main() {
     "Cox's_Bazar",
   ];
   List<Tuple> tuples = [];
-  for (int i = route.indexOf(FT[0]); i > -1; i--) {
-    for (int j = route.indexOf(FT[1]); j < route.length; j++) {
+  for (int i = route.indexOf(ft[0]); i > -1; i--) {
+    for (int j = route.indexOf(ft[1]); j < route.length; j++) {
       Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
       tuples.add(temp);
     }
   }
   tuples.sort((a, b) => a.first.compareTo(b.first));
-  tuples.forEach((tuple) => print(tuple));
+  for (var tuple in tuples) {
+    print(tuple);
+  }
 }

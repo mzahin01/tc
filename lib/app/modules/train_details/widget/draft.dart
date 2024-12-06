@@ -1,4 +1,4 @@
-List<String> allTrains = [
+List<String> allStations = [
   "Abdulpur",
   "Adv. Motiur Rahman",
   "Akhaura",
