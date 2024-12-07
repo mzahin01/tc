@@ -81,7 +81,9 @@ class DPDButton extends StatelessWidget {
             ),
           ),
           searchMatchFn: (item, searchValue) {
-            return item.value.toString().contains(searchValue);
+            return (item.value as String)
+                .toLowerCase()
+                .contains(searchValue.toLowerCase());
           },
         ),
         onMenuStateChange: (isOpen) {

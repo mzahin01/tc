@@ -305,7 +305,7 @@ List<String> sagardariExpressStations = [
   "Khulna"
 ];
 
-List<String> rajshahiToDhakaViaRajbari = [
+List<String> rajshahiToDhakaViaFaridpur = [
   "Rajshahi",
   "Ishwardi",
   "Pakshi",

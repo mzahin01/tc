@@ -42,8 +42,8 @@ class HomeController extends GetxController {
   List<String> get rajshahiToSaidpurStations => rajshahiToSaidpur;
   List<String> get rajshahiToPanchagarhStations => rajshahiToPanchagarh;
   List<String> get sagardariExpressStationsList => sagardariExpressStations;
-  List<String> get rajshahiToDhakaViaRajbariStations =>
-      rajshahiToDhakaViaRajbari;
+  List<String> get rajshahiToDhakaViaFaridpurStations =>
+      rajshahiToDhakaViaFaridpur;
   List<String> get rajshahiToGopalganjStations => rajshahiToGopalganj;
   List<String> get dhakaToJamalpurStations => dhakaToJamalpur;
   List<String> get khulnaToSaidpurStations => khulnaToSaidpur;
