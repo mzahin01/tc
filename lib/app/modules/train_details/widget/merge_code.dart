@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 List<String> mergeTimetables(List<String> trainX, List<String> trainY) {
   // Step 1: Create an empty merged list
   final List<String> mergedList = [];

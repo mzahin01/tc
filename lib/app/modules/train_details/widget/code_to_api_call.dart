@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 class Tuple {
   final int first;
   final String second;

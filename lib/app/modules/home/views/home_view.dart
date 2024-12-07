@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(height: 40),
           DPDButton(
-            items: controller.stationNames,
+            items: controller.allStations,
             selectedValue: controller.fromStation.value,
             onChanged: (value) {
               controller.fromStation.value = value;
@@ -64,7 +64,7 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(width: 25),
           DPDButton(
-            items: controller.stationNames,
+            items: controller.allStations,
             selectedValue: controller.toStation.value,
             onChanged: (value) {
               controller.toStation.value = value;
@@ -132,7 +132,7 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DPDButton(
-                items: controller.stationNames,
+                items: controller.allStations,
                 selectedValue: controller.fromStation.value,
                 onChanged: (value) {
                   controller.fromStation.value = value;
@@ -143,7 +143,7 @@ class HomeView extends GetView<HomeController> {
               ),
               SizedBox(width: 25),
               DPDButton(
-                items: controller.stationNames,
+                items: controller.allStations,
                 selectedValue: controller.toStation.value,
                 onChanged: (value) {
                   controller.toStation.value = value;
@@ -218,7 +218,7 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DPDButton(
-                items: controller.stationNames,
+                items: controller.allStations,
                 selectedValue: controller.fromStation.value,
                 onChanged: (value) {
                   controller.fromStation.value = value;
@@ -229,7 +229,7 @@ class HomeView extends GetView<HomeController> {
               ),
               SizedBox(width: 25),
               DPDButton(
-                items: controller.stationNames,
+                items: controller.allStations,
                 selectedValue: controller.toStation.value,
                 onChanged: (value) {
                   controller.toStation.value = value;

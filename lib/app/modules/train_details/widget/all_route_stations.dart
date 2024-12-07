@@ -1,4 +1,4 @@
-List<String> d2chapai = [
+List<String> dhakaToChapai = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -16,7 +16,7 @@ List<String> d2chapai = [
   "Chapai Nawabganj"
 ];
 
-List<String> d2kox = [
+List<String> dhakaToCoxBazar = [
   "Dhaka",
   "Biman_Bandar",
   "Narsingdi",
@@ -37,7 +37,7 @@ List<String> d2kox = [
   "Cox's Bazar"
 ];
 
-List<String> d2n = [
+List<String> dhakaToNoakhali = [
   "Dhaka",
   "Biman_Bandar",
   "Narsingdi",
@@ -56,7 +56,7 @@ List<String> d2n = [
   "Noakhali"
 ];
 
-List<String> d2syl = [
+List<String> dhakaToSylhet = [
   "Dhaka",
   "Biman Bandar",
   "Bhairab Bazar",
@@ -71,7 +71,7 @@ List<String> d2syl = [
   "Sylhet"
 ];
 
-List<String> d2khulna = [
+List<String> dhakaToKhulna = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -93,7 +93,7 @@ List<String> d2khulna = [
   "Khulna"
 ];
 
-List<String> d2panch = [
+List<String> dhakaToPanchagarh = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -123,7 +123,7 @@ List<String> d2panch = [
   "B Sirajul Islam"
 ];
 
-List<String> d2saidpur = [
+List<String> dhakaToSaidpur = [
   'Dhaka',
   'Biman_Bandar',
   'Joydebpur',
@@ -144,7 +144,7 @@ List<String> d2saidpur = [
   'Chilahati'
 ];
 
-List<String> d2rang = [
+List<String> dhakaToRangpur = [
   'Dhaka',
   'Biman_Bandar',
   'BBSetu_E',
@@ -163,7 +163,7 @@ List<String> d2rang = [
   'Rangpur'
 ];
 
-List<String> d2lal = [
+List<String> dhakaToLalmonirhat = [
   'Dhaka',
   'Biman_Bandar',
   'Joydebpur',
@@ -192,7 +192,7 @@ List<String> d2lal = [
   'Burimari'
 ];
 
-List<String> d2kishore = [
+List<String> dhakaToKishoreganj = [
   "Dhaka",
   "Biman_Bandar",
   "Narsingdi",
@@ -206,7 +206,7 @@ List<String> d2kishore = [
   "Kishorganj"
 ];
 
-List<String> ctg2chand = [
+List<String> chattogramToChandpur = [
   "Chandpur",
   "Chandpur_Court",
   "Modhu_Road",
@@ -220,7 +220,7 @@ List<String> ctg2chand = [
   "Chattogram"
 ];
 
-List<String> ctg2syl = [
+List<String> chattogramToSylhet = [
   "Chattogram",
   "Feni",
   "Nangolkot",
@@ -240,7 +240,7 @@ List<String> ctg2syl = [
   "Sylhet"
 ];
 
-List<String> raj2said = [
+List<String> rajshahiToSaidpur = [
   "Rajshahi",
   "Abdulpur",
   "Natore",
@@ -261,7 +261,7 @@ List<String> raj2said = [
   "Chilahati"
 ];
 
-List<String> raj2panch = [
+List<String> rajshahiToPanchagarh = [
   "Rajshahi",
   "Abdulpur",
   "Natore",
@@ -285,7 +285,7 @@ List<String> raj2panch = [
   "B Sirajul Islam"
 ];
 
-List<String> stationsSagardariExpress = [
+List<String> sagardariExpressStations = [
   "Rajshahi",
   "Abdulpur",
   "Azim Nagar",
@@ -305,7 +305,7 @@ List<String> stationsSagardariExpress = [
   "Khulna"
 ];
 
-List<String> d2rajpr = [
+List<String> rajshahiToDhakaViaRajbari = [
   "Rajshahi",
   "Ishwardi",
   "Pakshi",
@@ -330,7 +330,7 @@ List<String> d2rajpr = [
   "Dhaka"
 ];
 
-List<String> raj2gopal = [
+List<String> rajshahiToGopalganj = [
   "Rajshahi",
   "Ishwardi",
   "Bheramara",
@@ -353,7 +353,7 @@ List<String> raj2gopal = [
   "Gobra"
 ];
 
-List<String> d2jamal = [
+List<String> dhakaToJamalpur = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -367,7 +367,7 @@ List<String> d2jamal = [
   "Dewanganj_Bazar"
 ];
 
-List<String> khulna2saidpur = [
+List<String> khulnaToSaidpur = [
   "Khulna",
   "Daulatpur",
   "Noapara",
@@ -395,7 +395,7 @@ List<String> khulna2saidpur = [
   "Chilahati"
 ];
 
-List<String> d2jamaldown = [
+List<String> dhakaToJamalpurDown = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -416,7 +416,7 @@ List<String> d2jamaldown = [
   "Bhuapur"
 ];
 
-List<String> d2siraj = [
+List<String> dhakaToSirajganj = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -429,7 +429,7 @@ List<String> d2siraj = [
   "Sirajganj_Bazar"
 ];
 
-List<String> d2netro = [
+List<String> dhakaToNetrokona = [
   "Dhaka",
   "Biman_Bandar",
   "Joydebpur",
@@ -442,7 +442,7 @@ List<String> d2netro = [
   "Mohanganj"
 ];
 
-List<String> raj2pabna = [
+List<String> rajshahiToPabna = [
   "Chapai Nawabganj",
   "Amnura_Bypass",
   "Lolitnagar",
@@ -467,7 +467,7 @@ List<String> raj2pabna = [
   "Dhalarchar"
 ];
 
-List<String> ctg2jamal = [
+List<String> chattogramToJamalpur = [
   "Chattogram",
   "Bhatiary",
   "Feni",
@@ -484,7 +484,7 @@ List<String> ctg2jamal = [
   "Jamalpur_Town"
 ];
 
-List<String> ctg2cox = [
+List<String> chattogramToCoxBazar = [
   "Chattogram",
   "Sholoshohor",
   "Janali_Hat",

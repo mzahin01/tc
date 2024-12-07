@@ -1,4 +1,4 @@
-List<String> allStations = [
+List<String> allStationsAvailable = [
   "Abdulpur",
   "Adv. Motiur Rahman",
   "Akhaura",
