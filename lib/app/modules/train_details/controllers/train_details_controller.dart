@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../model/train_details_response/train_details_response.dart';
-
 import 'package:http/http.dart' as http;
 
 class TrainDetailsController extends GetxController {

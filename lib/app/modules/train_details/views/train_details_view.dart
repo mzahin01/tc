@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/responseive_view/response_view.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/train_details_controller.dart';
 import '../widget/gray_info_bar.dart';
 import '../widget/single_train_card.dart';
@@ -11,7 +12,17 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Train Details'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              Get.offAllNamed(Routes.HOME);
+            },
+          ),
+        ],
+      ),
       body: Obx(() {
         return SingleChildScrollView(
           child: Center(

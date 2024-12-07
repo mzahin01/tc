@@ -7,13 +7,11 @@ import '../../train_details/widget/station_names.dart';
 
 class HomeController extends GetxController {
   RxBool isLoading = false.obs;
-
   RxnString fromStation = RxnString(null);
   RxnString toStation = RxnString(null);
   TextEditingController fromStationText = TextEditingController();
   TextEditingController toStationText = TextEditingController();
   TextEditingController dateText = TextEditingController();
-  // RxBool isFromStationFinal = false.obs;
 
   final List<String> seatClass = [
     'AC_B',
@@ -59,6 +57,7 @@ class HomeController extends GetxController {
   TextEditingController seatClasstext = TextEditingController();
 
   RxList<String> combinedStations = <String>[].obs;
+  RxList<String> matchingLists = <String>[].obs;
 
   void updateCombinedStations() {
     final Set<String> uniqueStations = {};
@@ -145,6 +144,119 @@ class HomeController extends GetxController {
     combinedStations.value = uniqueStations.toList();
   }
 
+  void findMatchingLists() {
+    final List<String> listsContainingBothStations = [];
+
+    if (fromStation.value != null && toStation.value != null) {
+      final from = fromStation.value!;
+      final to = toStation.value!;
+
+      if (dhakaToChapaiStations.contains(from) &&
+          dhakaToChapaiStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToChapaiStations');
+      }
+      if (dhakaToCoxBazarStations.contains(from) &&
+          dhakaToCoxBazarStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToCoxBazarStations');
+      }
+      if (dhakaToNoakhaliStations.contains(from) &&
+          dhakaToNoakhaliStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToNoakhaliStations');
+      }
+      if (dhakaToSylhetStations.contains(from) &&
+          dhakaToSylhetStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToSylhetStations');
+      }
+      if (dhakaToKhulnaStations.contains(from) &&
+          dhakaToKhulnaStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToKhulnaStations');
+      }
+      if (dhakaToPanchagarhStations.contains(from) &&
+          dhakaToPanchagarhStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToPanchagarhStations');
+      }
+      if (dhakaToSaidpurStations.contains(from) &&
+          dhakaToSaidpurStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToSaidpurStations');
+      }
+      if (dhakaToRangpurStations.contains(from) &&
+          dhakaToRangpurStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToRangpurStations');
+      }
+      if (dhakaToLalmonirhatStations.contains(from) &&
+          dhakaToLalmonirhatStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToLalmonirhatStations');
+      }
+      if (dhakaToKishoreganjStations.contains(from) &&
+          dhakaToKishoreganjStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToKishoreganjStations');
+      }
+      if (chattogramToChandpurStations.contains(from) &&
+          chattogramToChandpurStations.contains(to)) {
+        listsContainingBothStations.add('chattogramToChandpurStations');
+      }
+      if (chattogramToSylhetStations.contains(from) &&
+          chattogramToSylhetStations.contains(to)) {
+        listsContainingBothStations.add('chattogramToSylhetStations');
+      }
+      if (rajshahiToSaidpurStations.contains(from) &&
+          rajshahiToSaidpurStations.contains(to)) {
+        listsContainingBothStations.add('rajshahiToSaidpurStations');
+      }
+      if (rajshahiToPanchagarhStations.contains(from) &&
+          rajshahiToPanchagarhStations.contains(to)) {
+        listsContainingBothStations.add('rajshahiToPanchagarhStations');
+      }
+      if (sagardariExpressStationsList.contains(from) &&
+          sagardariExpressStationsList.contains(to)) {
+        listsContainingBothStations.add('sagardariExpressStationsList');
+      }
+      if (rajshahiToDhakaViaFaridpurStations.contains(from) &&
+          rajshahiToDhakaViaFaridpurStations.contains(to)) {
+        listsContainingBothStations.add('rajshahiToDhakaViaFaridpurStations');
+      }
+      if (rajshahiToGopalganjStations.contains(from) &&
+          rajshahiToGopalganjStations.contains(to)) {
+        listsContainingBothStations.add('rajshahiToGopalganjStations');
+      }
+      if (dhakaToJamalpurStations.contains(from) &&
+          dhakaToJamalpurStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToJamalpurStations');
+      }
+      if (khulnaToSaidpurStations.contains(from) &&
+          khulnaToSaidpurStations.contains(to)) {
+        listsContainingBothStations.add('khulnaToSaidpurStations');
+      }
+      if (dhakaToJamalpurDownStations.contains(from) &&
+          dhakaToJamalpurDownStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToJamalpurDownStations');
+      }
+      if (dhakaToSirajganjStations.contains(from) &&
+          dhakaToSirajganjStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToSirajganjStations');
+      }
+      if (dhakaToNetrokonaStations.contains(from) &&
+          dhakaToNetrokonaStations.contains(to)) {
+        listsContainingBothStations.add('dhakaToNetrokonaStations');
+      }
+      if (rajshahiToPabnaStations.contains(from) &&
+          rajshahiToPabnaStations.contains(to)) {
+        listsContainingBothStations.add('rajshahiToPabnaStations');
+      }
+      if (chattogramToJamalpurStations.contains(from) &&
+          chattogramToJamalpurStations.contains(to)) {
+        listsContainingBothStations.add('chattogramToJamalpurStations');
+      }
+      if (chattogramToCoxBazarStations.contains(from) &&
+          chattogramToCoxBazarStations.contains(to)) {
+        listsContainingBothStations.add('chattogramToCoxBazarStations');
+      }
+    }
+
+    matchingLists.value = listsContainingBothStations;
+    print(matchingLists);
+  }
+
   selectDate() {
     showDatePicker(
       context: Get.context!,
@@ -161,7 +273,8 @@ class HomeController extends GetxController {
   }
 
   void save() {
-    Get.toNamed(Routes.TRAIN_DETAILS, arguments: {
+    findMatchingLists();
+    Get.offAllNamed(Routes.TRAIN_DETAILS, arguments: {
       'from': fromStation.value,
       'to': toStation.value,
       'date': dateText.text,
