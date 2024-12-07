@@ -57,6 +57,7 @@ class HomeView extends GetView<HomeController> {
             selectedValue: controller.fromStation.value,
             onChanged: (value) {
               controller.fromStation.value = value;
+              controller.updateCombinedStations();
             },
             searchController: controller.seatClasstext,
             hintText: 'Where From',
@@ -64,7 +65,9 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(width: 25),
           DPDButton(
-            items: controller.allStations,
+            items: controller.fromStation.value == null
+                ? []
+                : controller.combinedStations,
             selectedValue: controller.toStation.value,
             onChanged: (value) {
               controller.toStation.value = value;

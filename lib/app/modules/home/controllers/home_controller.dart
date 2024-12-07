@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   TextEditingController fromStationText = TextEditingController();
   TextEditingController toStationText = TextEditingController();
   TextEditingController dateText = TextEditingController();
+  // RxBool isFromStationFinal = false.obs;
 
   final List<String> seatClass = [
     'AC_B',
@@ -56,6 +57,93 @@ class HomeController extends GetxController {
 
   RxnString selectedClass = RxnString(null);
   TextEditingController seatClasstext = TextEditingController();
+
+  RxList<String> combinedStations = <String>[].obs;
+
+  void updateCombinedStations() {
+    final Set<String> uniqueStations = {};
+
+    if (fromStation.value != null) {
+      final station = fromStation.value!;
+      if (dhakaToChapaiStations.contains(station)) {
+        uniqueStations.addAll(dhakaToChapaiStations);
+      }
+      if (dhakaToCoxBazarStations.contains(station)) {
+        uniqueStations.addAll(dhakaToCoxBazarStations);
+      }
+      if (dhakaToNoakhaliStations.contains(station)) {
+        uniqueStations.addAll(dhakaToNoakhaliStations);
+      }
+      if (dhakaToSylhetStations.contains(station)) {
+        uniqueStations.addAll(dhakaToSylhetStations);
+      }
+      if (dhakaToKhulnaStations.contains(station)) {
+        uniqueStations.addAll(dhakaToKhulnaStations);
+      }
+      if (dhakaToPanchagarhStations.contains(station)) {
+        uniqueStations.addAll(dhakaToPanchagarhStations);
+      }
+      if (dhakaToSaidpurStations.contains(station)) {
+        uniqueStations.addAll(dhakaToSaidpurStations);
+      }
+      if (dhakaToRangpurStations.contains(station)) {
+        uniqueStations.addAll(dhakaToRangpurStations);
+      }
+      if (dhakaToLalmonirhatStations.contains(station)) {
+        uniqueStations.addAll(dhakaToLalmonirhatStations);
+      }
+      if (dhakaToKishoreganjStations.contains(station)) {
+        uniqueStations.addAll(dhakaToKishoreganjStations);
+      }
+      if (chattogramToChandpurStations.contains(station)) {
+        uniqueStations.addAll(chattogramToChandpurStations);
+      }
+      if (chattogramToSylhetStations.contains(station)) {
+        uniqueStations.addAll(chattogramToSylhetStations);
+      }
+      if (rajshahiToSaidpurStations.contains(station)) {
+        uniqueStations.addAll(rajshahiToSaidpurStations);
+      }
+      if (rajshahiToPanchagarhStations.contains(station)) {
+        uniqueStations.addAll(rajshahiToPanchagarhStations);
+      }
+      if (sagardariExpressStationsList.contains(station)) {
+        uniqueStations.addAll(sagardariExpressStationsList);
+      }
+      if (rajshahiToDhakaViaFaridpurStations.contains(station)) {
+        uniqueStations.addAll(rajshahiToDhakaViaFaridpurStations);
+      }
+      if (rajshahiToGopalganjStations.contains(station)) {
+        uniqueStations.addAll(rajshahiToGopalganjStations);
+      }
+      if (dhakaToJamalpurStations.contains(station)) {
+        uniqueStations.addAll(dhakaToJamalpurStations);
+      }
+      if (khulnaToSaidpurStations.contains(station)) {
+        uniqueStations.addAll(khulnaToSaidpurStations);
+      }
+      if (dhakaToJamalpurDownStations.contains(station)) {
+        uniqueStations.addAll(dhakaToJamalpurDownStations);
+      }
+      if (dhakaToSirajganjStations.contains(station)) {
+        uniqueStations.addAll(dhakaToSirajganjStations);
+      }
+      if (dhakaToNetrokonaStations.contains(station)) {
+        uniqueStations.addAll(dhakaToNetrokonaStations);
+      }
+      if (rajshahiToPabnaStations.contains(station)) {
+        uniqueStations.addAll(rajshahiToPabnaStations);
+      }
+      if (chattogramToJamalpurStations.contains(station)) {
+        uniqueStations.addAll(chattogramToJamalpurStations);
+      }
+      if (chattogramToCoxBazarStations.contains(station)) {
+        uniqueStations.addAll(chattogramToCoxBazarStations);
+      }
+    }
+
+    combinedStations.value = uniqueStations.toList();
+  }
 
   selectDate() {
     showDatePicker(
