@@ -15,16 +15,18 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(Spacing.xxlarge),
-            child: CrossfadeWrapperContainer(
-              visible: !controller.isLoading.value,
-              loaderHeight: Get.height,
-              child: ResponsiveWidget<HomeController>(
-                pc: buildDesktopView(),
-                tab: buildTabletView(),
-                mobile: buildMobileView(),
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(Spacing.xxlarge),
+              child: CrossfadeWrapperContainer(
+                visible: !controller.isLoading.value,
+                loaderHeight: Get.height,
+                child: ResponsiveWidget<HomeController>(
+                  pc: buildDesktopView(),
+                  tab: buildTabletView(),
+                  mobile: buildMobileView(),
+                ),
               ),
             ),
           ),
