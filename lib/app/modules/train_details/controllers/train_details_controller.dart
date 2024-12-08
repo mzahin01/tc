@@ -10,6 +10,7 @@ class TrainDetailsController extends GetxController {
   RxnString to = RxnString(null);
   RxnString date = RxnString(null);
   RxnString travelClass = RxnString(null);
+  RxList<String> matchingLists = <String>[].obs;
   Rxn<TrainDetailsResponse> data = Rxn<TrainDetailsResponse>();
 
   @override
@@ -19,6 +20,7 @@ class TrainDetailsController extends GetxController {
     to.value = Get.arguments['to'] ?? '';
     date.value = Get.arguments['date'] ?? '';
     travelClass.value = Get.arguments['class'] ?? '';
+    matchingLists.value = Get.arguments['matching'] ?? '';
 
     String base = 'railspaapi.shohoz.com';
     String path = '/v1.0/web/bookings/search-trips-v2';

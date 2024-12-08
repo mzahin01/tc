@@ -254,7 +254,7 @@ class HomeController extends GetxController {
     }
 
     matchingLists.value = listsContainingBothStations;
-    print(matchingLists);
+    // print(matchingLists);
   }
 
   selectDate() {
@@ -296,6 +296,7 @@ class HomeController extends GetxController {
       'to': toStation.value,
       'date': dateText.text,
       'class': selectedClass.value,
+      'matching': matchingLists,
     });
   }
 }
