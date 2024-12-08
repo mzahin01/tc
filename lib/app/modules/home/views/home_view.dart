@@ -58,6 +58,7 @@ class HomeView extends GetView<HomeController> {
             onChanged: (value) {
               controller.fromStation.value = value;
               controller.updateCombinedStations();
+              controller.isFormValid();
             },
             searchController: controller.seatClasstext,
             hintText: 'Where From',
@@ -71,6 +72,7 @@ class HomeView extends GetView<HomeController> {
             selectedValue: controller.toStation.value,
             onChanged: (value) {
               controller.toStation.value = value;
+              controller.isFormValid();
             },
             searchController: controller.seatClasstext,
             hintText: 'Where to',
@@ -81,11 +83,13 @@ class HomeView extends GetView<HomeController> {
             child: TextFieldWidget.oneLine(
               borderColor: Colors.grey,
               showCursor: false,
+              readOnly: true,
               hintText: 'Date',
               hintStyle: TextStyle(color: Colors.black, fontSize: 14),
               controller: controller.dateText,
               ontap: () {
                 controller.selectDate();
+                controller.isFormValid();
               },
               height: 40,
             ),
@@ -96,17 +100,32 @@ class HomeView extends GetView<HomeController> {
             selectedValue: controller.selectedClass.value,
             onChanged: (value) {
               controller.selectedClass.value = value;
+              controller.isFormValid();
             },
             searchController: controller.seatClasstext,
             hintText: 'Choose a Class',
             searchHint: 'Search Class',
           ),
           SizedBox(height: 25),
-          ElevatedButton(
-            onPressed: () {
-              controller.save();
-            },
-            child: const Text('Search'),
+          SizedBox(
+            width: 250,
+            child: ElevatedButton(
+              onPressed: () {
+                controller.save();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: controller.isFormV.value
+                    ? Colors.redAccent
+                    : Colors.black12,
+              ),
+              child: Text(
+                'Search',
+                style: TextStyle(
+                  color: controller.isFormV.value ? Colors.white : Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ),
           ),
           SizedBox(height: 25),
         ],

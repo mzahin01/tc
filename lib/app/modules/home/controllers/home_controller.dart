@@ -272,7 +272,24 @@ class HomeController extends GetxController {
     });
   }
 
+  RxBool isFormV = false.obs;
+
+  void isFormValid() {
+    if (fromStation.value != null &&
+        toStation.value != null &&
+        dateText.text.isNotEmpty &&
+        selectedClass.value != null) {
+      isFormV.value = true;
+    } else {
+      isFormV.value = false;
+    }
+  }
+
   void save() {
+    if (!isFormV.value) {
+      Get.snackbar('Error', 'Please fill all fields');
+      return;
+    }
     findMatchingLists();
     Get.offAllNamed(Routes.TRAIN_DETAILS, arguments: {
       'from': fromStation.value,
