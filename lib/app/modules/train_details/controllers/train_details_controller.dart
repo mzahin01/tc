@@ -3,6 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../model/train_details_response/train_details_response.dart';
 import 'package:http/http.dart' as http;
+import '../widget/all_route_stations.dart';
+
+class Tuple {
+  final int first;
+  final String second;
+  final String third;
+
+  Tuple(this.first, this.second, this.third);
+
+  @override
+  String toString() => '$first $second $third';
+}
 
 class TrainDetailsController extends GetxController {
   RxBool isLoading = false.obs;
@@ -12,6 +24,35 @@ class TrainDetailsController extends GetxController {
   RxnString travelClass = RxnString(null);
   RxList<String> matchingLists = <String>[].obs;
   Rxn<TrainDetailsResponse> data = Rxn<TrainDetailsResponse>();
+  final Set<String> processedRoutesSet = {};
+
+  final Map<String, List<String>> stationListsMap = {
+    'dhakaToChapaiStations': dhakaToChapai,
+    'dhakaToCoxBazarStations': dhakaToCoxBazar,
+    'dhakaToNoakhaliStations': dhakaToNoakhali,
+    'dhakaToSylhetStations': dhakaToSylhet,
+    'dhakaToKhulnaStations': dhakaToKhulna,
+    'dhakaToPanchagarhStations': dhakaToPanchagarh,
+    'dhakaToSaidpurStations': dhakaToSaidpur,
+    'dhakaToRangpurStations': dhakaToRangpur,
+    'dhakaToLalmonirhatStations': dhakaToLalmonirhat,
+    'dhakaToKishoreganjStations': dhakaToKishoreganj,
+    'chattogramToChandpurStations': chattogramToChandpur,
+    'chattogramToSylhetStations': chattogramToSylhet,
+    'rajshahiToSaidpurStations': rajshahiToSaidpur,
+    'rajshahiToPanchagarhStations': rajshahiToPanchagarh,
+    'sagardariExpressStationsList': sagardariExpressStations,
+    'rajshahiToDhakaViaFaridpurStations': rajshahiToDhakaViaFaridpur,
+    'rajshahiToGopalganjStations': rajshahiToGopalganj,
+    'dhakaToJamalpurStations': dhakaToJamalpur,
+    'khulnaToSaidpurStations': khulnaToSaidpur,
+    'dhakaToJamalpurDownStations': dhakaToJamalpurDown,
+    'dhakaToSirajganjStations': dhakaToSirajganj,
+    'dhakaToNetrokonaStations': dhakaToNetrokona,
+    'rajshahiToPabnaStations': rajshahiToPabna,
+    'chattogramToJamalpurStations': chattogramToJamalpur,
+    'chattogramToCoxBazarStations': chattogramToCoxBazar,
+  };
 
   @override
   void onInit() {
@@ -34,6 +75,45 @@ class TrainDetailsController extends GetxController {
     Uri uri = Uri.http(base, path, queryParams);
     String fullURL = uri.toString();
     fetchTrainDetails(fullURL);
+    passMatchingListsToProcessRoutes();
+  }
+
+  List<String> processRoutes(List<String> ft, List<String> route) {
+    List<Tuple> tuples = [];
+    int m = route.indexOf(ft[0]);
+    int n = route.indexOf(ft[1]);
+    if (m < n) {
+      for (int i = m; i > -1; i--) {
+        for (int j = n; j < route.length; j++) {
+          Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
+          tuples.add(temp);
+        }
+      }
+    } else {
+      for (int i = n; i > -1; i--) {
+        for (int j = m; j < route.length; j++) {
+          Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
+          tuples.add(temp);
+        }
+      }
+    }
+    tuples.sort((a, b) => a.first.compareTo(b.first));
+    return tuples.map((tuple) => tuple.toString()).toList();
+  }
+
+  void passMatchingListsToProcessRoutes() {
+    final List<List<String>> routesToProcess = [];
+    final List<String> ft = [from.value ?? '', to.value ?? ''];
+
+    for (String listName in matchingLists) {
+      if (stationListsMap.containsKey(listName)) {
+        routesToProcess.add(stationListsMap[listName]!);
+      }
+    }
+    for (int i = 0; i < routesToProcess.length; i++) {
+      List<String> processedRoute = processRoutes(ft, routesToProcess[i]);
+      processedRoutesSet.addAll(processedRoute);
+    }
   }
 
   Future<void> fetchTrainDetails(String fullURL) async {

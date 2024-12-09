@@ -291,7 +291,7 @@ class HomeController extends GetxController {
       return;
     }
     findMatchingLists();
-    Get.offAllNamed(Routes.TRAIN_DETAILS, arguments: {
+    Get.toNamed(Routes.TRAIN_DETAILS, arguments: {
       'from': fromStation.value,
       'to': toStation.value,
       'date': dateText.text,
