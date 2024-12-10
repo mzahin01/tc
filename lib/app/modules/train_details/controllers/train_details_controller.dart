@@ -13,7 +13,17 @@ class Tuple {
   Tuple(this.first, this.second, this.third);
 
   @override
-  String toString() => '$first $second $third';
+  String toString() => '$second $third';
+}
+
+class Pair {
+  final String first;
+  final String second;
+
+  Pair(this.first, this.second);
+
+  @override
+  String toString() => '$first $second';
 }
 
 class TrainDetailsController extends GetxController {
@@ -24,7 +34,10 @@ class TrainDetailsController extends GetxController {
   RxnString travelClass = RxnString(null);
   RxList<String> matchingLists = <String>[].obs;
   Rxn<TrainDetailsResponse> data = Rxn<TrainDetailsResponse>();
-  final Set<String> processedRoutesSet = {};
+  List<Tuple> tempTuples = [];
+  final Set<Tuple> processedRoutesSet = {};
+  final Set<Pair> finalProcessedRoutesSet = {};
+  final Set<String> tempFinal = {};
 
   final Map<String, List<String>> stationListsMap = {
     'dhakaToChapaiStations': dhakaToChapai,
@@ -78,27 +91,26 @@ class TrainDetailsController extends GetxController {
     passMatchingListsToProcessRoutes();
   }
 
-  List<String> processRoutes(List<String> ft, List<String> route) {
+  void processRoutes(List<String> ft, List<String> route) {
     List<Tuple> tuples = [];
     int m = route.indexOf(ft[0]);
     int n = route.indexOf(ft[1]);
-    if (m < n) {
-      for (int i = m; i > -1; i--) {
-        for (int j = n; j < route.length; j++) {
-          Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
-          tuples.add(temp);
-        }
-      }
-    } else {
-      for (int i = n; i > -1; i--) {
-        for (int j = m; j < route.length; j++) {
-          Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
-          tuples.add(temp);
-        }
+    if (m > n) {
+      route = route.reversed.toList();
+      m = route.indexOf(ft[0]);
+      n = route.indexOf(ft[1]);
+    }
+
+    for (int i = m; i > -1; i--) {
+      for (int j = n; j < route.length; j++) {
+        Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
+        tuples.add(temp);
       }
     }
-    tuples.sort((a, b) => a.first.compareTo(b.first));
-    return tuples.map((tuple) => tuple.toString()).toList();
+
+    for (var tuple in tuples) {
+      tempTuples.add(tuple);
+    }
   }
 
   void passMatchingListsToProcessRoutes() {
@@ -111,9 +123,23 @@ class TrainDetailsController extends GetxController {
       }
     }
     for (int i = 0; i < routesToProcess.length; i++) {
-      List<String> processedRoute = processRoutes(ft, routesToProcess[i]);
-      processedRoutesSet.addAll(processedRoute);
+      processRoutes(ft, routesToProcess[i]);
     }
+    tempTuples.sort((a, b) => a.first.compareTo(b.first));
+    for (var tuple in tempTuples) {
+      // processedRoutesSet.add(tuple);
+      tempFinal.add(tuple.toString());
+    }
+    for (var tuple in tempFinal) {
+      List<String> temp = tuple.split(' ');
+
+      // Check if the list has at least two elements
+      if (temp.length >= 2) {
+        finalProcessedRoutesSet.add(Pair(temp[0], temp[1]));
+      }
+    }
+
+    print(processedRoutesSet);
   }
 
   Future<void> fetchTrainDetails(String fullURL) async {

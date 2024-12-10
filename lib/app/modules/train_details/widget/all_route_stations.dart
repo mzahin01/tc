@@ -34,7 +34,6 @@ List<String> dhakaToCoxBazar = [
   "Feni",
   "Kumira",
   "Chattogram",
-  "Cox's Bazar"
 ];
 
 List<String> dhakaToNoakhali = [
