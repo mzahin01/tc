@@ -91,28 +91,6 @@ class TrainDetailsController extends GetxController {
     passMatchingListsToProcessRoutes();
   }
 
-  void processRoutes(List<String> ft, List<String> route) {
-    List<Tuple> tuples = [];
-    int m = route.indexOf(ft[0]);
-    int n = route.indexOf(ft[1]);
-    if (m > n) {
-      route = route.reversed.toList();
-      m = route.indexOf(ft[0]);
-      n = route.indexOf(ft[1]);
-    }
-
-    for (int i = m; i > -1; i--) {
-      for (int j = n; j < route.length; j++) {
-        Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
-        tuples.add(temp);
-      }
-    }
-
-    for (var tuple in tuples) {
-      tempTuples.add(tuple);
-    }
-  }
-
   void passMatchingListsToProcessRoutes() {
     final List<List<String>> routesToProcess = [];
     final List<String> ft = [from.value ?? '', to.value ?? ''];
@@ -170,6 +148,28 @@ class TrainDetailsController extends GetxController {
       if (kDebugMode) {
         print('An error occurred: $e');
       }
+    }
+  }
+
+  void processRoutes(List<String> ft, List<String> route) {
+    List<Tuple> tuples = [];
+    int m = route.indexOf(ft[0]);
+    int n = route.indexOf(ft[1]);
+    if (m > n) {
+      route = route.reversed.toList();
+      m = route.indexOf(ft[0]);
+      n = route.indexOf(ft[1]);
+    }
+
+    for (int i = m; i > -1; i--) {
+      for (int j = n; j < route.length; j++) {
+        Tuple temp = Tuple((j - i).abs(), route[i], route[j]);
+        tuples.add(temp);
+      }
+    }
+
+    for (var tuple in tuples) {
+      tempTuples.add(tuple);
     }
   }
 }
