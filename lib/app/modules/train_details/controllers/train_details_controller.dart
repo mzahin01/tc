@@ -33,7 +33,7 @@ class TrainDetailsController extends GetxController {
   RxnString date = RxnString(null);
   RxnString travelClass = RxnString(null);
   RxList<String> matchingLists = <String>[].obs;
-  Rxn<TrainDetailsResponse> data = Rxn<TrainDetailsResponse>();
+  RxList<TrainDetailsResponse> trainJsonData = <TrainDetailsResponse>[].obs;
   List<Tuple> tempTuples = [];
   final Set<Tuple> processedRoutesSet = {};
   final Set<Pair> finalProcessedRoutesSet = {};
@@ -117,7 +117,7 @@ class TrainDetailsController extends GetxController {
       }
     }
 
-    print(processedRoutesSet);
+    // print(processedRoutesSet);
   }
 
   Future<void> fetchTrainDetails(String fullURL) async {
@@ -138,7 +138,8 @@ class TrainDetailsController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        data.value = TrainDetailsResponse.fromJson(jsonDecode(response.body));
+        trainJsonData
+            .add(TrainDetailsResponse.fromJson(jsonDecode(response.body)));
       } else {
         if (kDebugMode) {
           print('Error: ${response.statusCode}');

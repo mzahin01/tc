@@ -14,13 +14,15 @@ class SingleTrainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.data.value == null) {
+      if (controller.trainJsonData[0].data?.trains == null) {
         return CircularProgressIndicator();
       }
       return Column(
         children: [
           for (int j = 0;
-              j < (controller.data.value?.data?.trains?.length.toInt() ?? 0);
+              j <
+                  (controller.trainJsonData[0].data?.trains?.length.toInt() ??
+                      0);
               j++)
             Container(
               margin: const EdgeInsets.all(10),
@@ -57,7 +59,7 @@ class SingleTrainWidget extends StatelessWidget {
                       children: [
                         for (int i = 0;
                             i <
-                                (controller.data.value?.data?.trains?[j]
+                                (controller.trainJsonData[0].data?.trains?[j]
                                         .seatTypes?.length
                                         .toInt() ??
                                     0);
@@ -109,18 +111,19 @@ class SeatTypeDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-              controller.data.value?.data?.trains?[j].seatTypes?[i].type ?? ''),
-          Text((double.tryParse(controller
-                          .data.value?.data?.trains?[j].seatTypes?[i].fare ??
+              controller.trainJsonData[0].data?.trains?[j].seatTypes?[i].type ??
+                  ''),
+          Text((double.tryParse(controller.trainJsonData[0].data?.trains?[j]
+                          .seatTypes?[i].fare ??
                       '0')! +
-                  (controller.data.value?.data?.trains?[j].seatTypes?[i]
+                  (controller.trainJsonData[0].data?.trains?[j].seatTypes?[i]
                           .vatAmount ??
                       0))
               .toString()),
           Text(
-              'Online - ${(controller.data.value?.data?.trains?[j].seatTypes?[i].seatCounts?.online ?? 0).toString()}'),
+              'Online - ${(controller.trainJsonData[0].data?.trains?[j].seatTypes?[i].seatCounts?.online ?? 0).toString()}'),
           Text(
-              'Offline - ${(controller.data.value?.data?.trains?[j].seatTypes?[i].seatCounts?.offline ?? 0).toString()}'),
+              'Offline - ${(controller.trainJsonData[0].data?.trains?[j].seatTypes?[i].seatCounts?.offline ?? 0).toString()}'),
         ],
       ),
     );
@@ -142,19 +145,21 @@ class LeavingDurArriving extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(controller.data.value?.data?.trains?[j].departureDateTime ?? ''),
+        Text(controller.trainJsonData[0].data?.trains?[j].departureDateTime ??
+            ''),
         Container(
           height: 2,
           width: 35,
           color: SGColors.black,
         ),
-        Text(controller.data.value?.data?.trains?[j].travelTime ?? ''),
+        Text(controller.trainJsonData[0].data?.trains?[j].travelTime ?? ''),
         Container(
           height: 2,
           width: 35,
           color: SGColors.black,
         ),
-        Text(controller.data.value?.data?.trains?[j].arrivalDateTime ?? ''),
+        Text(
+            controller.trainJsonData[0].data?.trains?[j].arrivalDateTime ?? ''),
       ],
     );
   }
@@ -175,7 +180,7 @@ class TrainTitle extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 15),
-        Text(controller.data.value?.data?.trains?[j].tripNumber ?? ''),
+        Text(controller.trainJsonData[0].data?.trains?[j].tripNumber ?? ''),
         Divider(
           color: Colors.black,
           thickness: 1,
