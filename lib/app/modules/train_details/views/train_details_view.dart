@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tc/app/modules/train_details/model/train_details_response/train.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
-import 'package:tc/app/shared/widget/responseive_view/response_view.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/train_details_controller.dart';
-import '../widget/gray_info_bar.dart';
-import '../widget/single_train_card.dart';
 
 class TrainDetailsView extends GetView<TrainDetailsController> {
   const TrainDetailsView({super.key});
@@ -29,54 +27,34 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
             child: CrossfadeWrapperContainer(
               visible: !controller.isLoading.value,
               loaderHeight: Get.height,
-              child: ResponsiveWidget<TrainDetailsController>(
-                pc: buildDesktopView(),
-                tab: buildTabletView(),
-                mobile: buildMobileView(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // InfoBar(controller: controller),
+                  // SingleTrainWidget(controller: controller)
+                  SizedBox(height: 25),
+                  // a loop for showing Map<String, List<Train>>
+                  for (MapEntry<String, List<Train>> entry
+                      in controller.trainMap.entries)
+                    Row(
+                      children: [
+                        Text(entry.key),
+                        for (Train train in entry.value)
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            height: 20,
+                            width: 20,
+                            color: Colors.redAccent,
+                          )
+                      ],
+                    ),
+                ],
               ),
             ),
           ),
         );
       }),
-    );
-  }
-
-  // Mobile layout
-  Widget buildMobileView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        InfoBar(controller: controller),
-        SizedBox(height: 25),
-        SingleTrainWidget(controller: controller)
-      ],
-    );
-  }
-
-  // Tablet layout
-  Widget buildTabletView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        InfoBar(controller: controller),
-        SizedBox(height: 25),
-        SingleTrainWidget(controller: controller)
-      ],
-    );
-  }
-
-  // Desktop layout
-  Widget buildDesktopView() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        InfoBar(controller: controller),
-        SizedBox(height: 25),
-        SingleTrainWidget(controller: controller)
-      ],
     );
   }
 }

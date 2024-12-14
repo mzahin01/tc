@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:tc/app/modules/train_details/model/train_details_response/train.dart';
 import '../model/train_details_response/train_details_response.dart';
 import 'package:http/http.dart' as http;
 import '../widget/all_route_stations.dart';
@@ -32,12 +33,15 @@ class TrainDetailsController extends GetxController {
   RxnString to = RxnString(null);
   RxnString date = RxnString(null);
   RxnString travelClass = RxnString(null);
-  RxList<String> matchingLists = <String>[].obs;
-  RxList<TrainDetailsResponse> trainJsonData = <TrainDetailsResponse>[].obs;
+  RxList<String> matchingLists = RxList.empty(growable: true);
+  // RxList<TrainDetailsResponse> trainJsonData = RxList.empty(growable: true);
   List<Tuple> tempTuples = [];
   final Set<Tuple> processedRoutesSet = {};
   final Set<Pair> finalProcessedRoutesSet = {};
   final Set<String> tempFinal = {};
+
+  // String is "train_model"
+  final Map<String, List<Train>> trainMap = {};
 
   final Map<String, List<String>> stationListsMap = {
     'dhakaToChapaiStations': dhakaToChapai,
@@ -67,8 +71,22 @@ class TrainDetailsController extends GetxController {
     'chattogramToCoxBazarStations': chattogramToCoxBazar,
   };
 
+  String getFullURL(String from, String to) {
+    String base = 'railspaapi.shohoz.com';
+    String path = '/v1.0/web/bookings/search-trips-v2';
+    Map<String, String> queryParams = {
+      'from_city': from,
+      'to_city': to,
+      'date_of_journey': date.value ?? '',
+      'seat_class': travelClass.value ?? '',
+    };
+
+    Uri uri = Uri.http(base, path, queryParams);
+    return uri.toString();
+  }
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     from.value = Get.arguments['from'] ?? '';
     to.value = Get.arguments['to'] ?? '';
@@ -76,19 +94,26 @@ class TrainDetailsController extends GetxController {
     travelClass.value = Get.arguments['class'] ?? '';
     matchingLists.value = Get.arguments['matching'] ?? '';
 
-    String base = 'railspaapi.shohoz.com';
-    String path = '/v1.0/web/bookings/search-trips-v2';
-    Map<String, String> queryParams = {
-      'from_city': from.value ?? '',
-      'to_city': to.value ?? '',
-      'date_of_journey': date.value ?? '',
-      'seat_class': travelClass.value ?? '',
-    };
-
-    Uri uri = Uri.http(base, path, queryParams);
-    String fullURL = uri.toString();
-    fetchTrainDetails(fullURL);
     passMatchingListsToProcessRoutes();
+    getFinalTrainData();
+  }
+
+  Future<void> getFinalTrainData() async {
+    for (var pair in finalProcessedRoutesSet) {
+      String from = pair.first;
+      String to = pair.second;
+      String fullURL = getFullURL(from, to);
+      TrainDetailsResponse? res = await fetchTrainDetails(fullURL);
+      if (res != null) {
+        for (Train train in res.data?.trains ?? []) {
+          if (trainMap.containsKey(train.trainModel)) {
+            trainMap[train.trainModel]?.add(train);
+          } else {
+            trainMap[train.trainModel ?? ''] = [train];
+          }
+        }
+      }
+    }
   }
 
   void passMatchingListsToProcessRoutes() {
@@ -105,22 +130,19 @@ class TrainDetailsController extends GetxController {
     }
     tempTuples.sort((a, b) => a.first.compareTo(b.first));
     for (var tuple in tempTuples) {
-      // processedRoutesSet.add(tuple);
       tempFinal.add(tuple.toString());
     }
     for (var tuple in tempFinal) {
       List<String> temp = tuple.split(' ');
 
-      // Check if the list has at least two elements
       if (temp.length >= 2) {
         finalProcessedRoutesSet.add(Pair(temp[0], temp[1]));
       }
     }
-
-    // print(processedRoutesSet);
+    print(finalProcessedRoutesSet);
   }
 
-  Future<void> fetchTrainDetails(String fullURL) async {
+  Future<TrainDetailsResponse?> fetchTrainDetails(String fullURL) async {
     if (kDebugMode) {
       print(fullURL);
     }
@@ -138,28 +160,29 @@ class TrainDetailsController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        trainJsonData
-            .add(TrainDetailsResponse.fromJson(jsonDecode(response.body)));
+        return TrainDetailsResponse.fromJson(jsonDecode(response.body));
       } else {
         if (kDebugMode) {
           print('Error: ${response.statusCode}');
         }
+        return null;
       }
     } catch (e) {
       if (kDebugMode) {
         print('An error occurred: $e');
       }
+      return null;
     }
   }
 
-  void processRoutes(List<String> ft, List<String> route) {
+  void processRoutes(List<String> fromAndToStation, List<String> route) {
     List<Tuple> tuples = [];
-    int m = route.indexOf(ft[0]);
-    int n = route.indexOf(ft[1]);
+    int m = route.indexOf(fromAndToStation[0]);
+    int n = route.indexOf(fromAndToStation[1]);
     if (m > n) {
       route = route.reversed.toList();
-      m = route.indexOf(ft[0]);
-      n = route.indexOf(ft[1]);
+      m = route.indexOf(fromAndToStation[0]);
+      n = route.indexOf(fromAndToStation[1]);
     }
 
     for (int i = m; i > -1; i--) {

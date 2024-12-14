@@ -56,8 +56,8 @@ class HomeController extends GetxController {
   RxnString selectedClass = RxnString(null);
   TextEditingController seatClasstext = TextEditingController();
 
-  RxList<String> combinedStations = <String>[].obs;
-  RxList<String> matchingLists = <String>[].obs;
+  RxList<String> combinedStations = RxList.empty(growable: true);
+  RxList<String> matchingLists = RxList.empty(growable: true);
 
   void updateCombinedStations() {
     final Set<String> uniqueStations = {};
@@ -261,8 +261,8 @@ class HomeController extends GetxController {
     showDatePicker(
       context: Get.context!,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2030),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 10)),
     ).then((value) {
       if (value != null) {
         String month = DateFormat.MMM().format(value);

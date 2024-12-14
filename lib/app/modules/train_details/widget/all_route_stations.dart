@@ -36,6 +36,8 @@ List<String> dhakaToCoxBazar = [
   "Chattogram",
 ];
 
+List<List<String>> sts = [dhakaToCoxBazar, dhakaToChapai, dhakaToNoakhali];
+
 List<String> dhakaToNoakhali = [
   "Dhaka",
   "Biman_Bandar",
