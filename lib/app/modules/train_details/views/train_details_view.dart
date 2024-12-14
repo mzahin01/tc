@@ -29,7 +29,7 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
               loaderHeight: Get.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // InfoBar(controller: controller),
                   // SingleTrainWidget(controller: controller)
@@ -37,7 +37,7 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
                   // a loop for showing Map<String, List<Train>>
                   for (MapEntry<String, List<Train>> entry
                       in controller.trainMap.entries)
-                    Row(
+                    Wrap(
                       children: [
                         Text(entry.key),
                         for (Train train in entry.value)

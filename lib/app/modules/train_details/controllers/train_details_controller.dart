@@ -99,7 +99,7 @@ class TrainDetailsController extends GetxController {
   }
 
   Future<void> getFinalTrainData() async {
-    for (var pair in finalProcessedRoutesSet) {
+    for (Pair pair in finalProcessedRoutesSet) {
       String from = pair.first;
       String to = pair.second;
       String fullURL = getFullURL(from, to);
