@@ -41,7 +41,7 @@ class TrainDetailsController extends GetxController {
   final Set<String> tempFinal = {};
 
   // String is "train_model"
-  final Map<String, List<Train>> trainMap = {};
+  final RxMap<String, List<Train>> trainMap = RxMap({});
 
   final Map<String, List<String>> stationListsMap = {
     'dhakaToChapaiStations': dhakaToChapai,
@@ -95,7 +95,7 @@ class TrainDetailsController extends GetxController {
     matchingLists.value = Get.arguments['matching'] ?? '';
 
     passMatchingListsToProcessRoutes();
-    getFinalTrainData();
+    // getFinalTrainData();
   }
 
   Future<void> getFinalTrainData() async {
