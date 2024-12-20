@@ -28,9 +28,12 @@ class Pair {
 }
 
 class TrainDetailsController extends GetxController {
+  RxBool isSearching = false.obs;
   RxBool isLoading = false.obs;
   RxnString from = RxnString(null);
   RxnString to = RxnString(null);
+  String initFrom = '';
+  String initTo = '';
   RxnString date = RxnString(null);
   RxnString travelClass = RxnString(null);
   RxList<String> matchingLists = RxList.empty(growable: true);
@@ -94,16 +97,19 @@ class TrainDetailsController extends GetxController {
     date.value = Get.arguments['date'] ?? '';
     travelClass.value = Get.arguments['class'] ?? '';
     matchingLists.value = Get.arguments['matching'] ?? '';
-
+    isSearching.value = true;
     passMatchingListsToProcessRoutes();
     getFinalTrainData();
   }
 
   Future<void> getFinalTrainData() async {
+    initFrom = from.value ?? '';
+    initTo = to.value ?? '';
     for (Pair pair in finalProcessedRoutesSet) {
-      String from = pair.first;
-      String to = pair.second;
-      String fullURL = getFullURL(from, to);
+      counter.value++;
+      from.value = pair.first;
+      to.value = pair.second;
+      String fullURL = getFullURL(from.value ?? '', to.value ?? '');
       TrainDetailsResponse? res = await fetchTrainDetails(fullURL);
       if (res != null) {
         for (Train train in res.data?.trains ?? []) {
@@ -111,7 +117,6 @@ class TrainDetailsController extends GetxController {
               train.seatTypes!.any((seatType) =>
                   seatType.seatCounts!.online! > 0 ||
                   seatType.seatCounts!.offline! > 0)) {
-            counter.value++;
             if (trainMap.containsKey(train.trainModel)) {
               trainMap[train.trainModel]?.add(train);
             } else {
@@ -121,6 +126,9 @@ class TrainDetailsController extends GetxController {
         }
       }
     }
+    isSearching.value = false;
+    from.value = initFrom;
+    to.value = initTo;
   }
 
   void passMatchingListsToProcessRoutes() {

@@ -4,6 +4,7 @@ import 'package:tc/app/modules/train_details/model/train_details_response/train.
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/train_details_controller.dart';
+import '../widget/gray_info_bar.dart';
 
 class TrainDetailsView extends GetView<TrainDetailsController> {
   const TrainDetailsView({super.key});
@@ -31,16 +32,19 @@ class TrainDetailsView extends GetView<TrainDetailsController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // InfoBar(controller: controller),
+                  InfoBar(controller: controller),
                   // SingleTrainWidget(controller: controller)
                   SizedBox(height: 25),
                   // a loop for showing Map<String, List<Train>>
-                  Text(controller.date.value ?? ''),
                   for (MapEntry<String, List<Train>> entry
                       in controller.trainMap.entries)
                     Column(
                       children: [
-                        Text(entry.value[0].tripNumber ?? ''),
+                        Text((entry.value[0].tripNumber ?? ''),
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold)),
                         for (Train train in entry.value)
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
