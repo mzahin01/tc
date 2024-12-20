@@ -20,6 +20,8 @@ class DPDButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FocusNode searchFocusNode = FocusNode();
+
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
         isExpanded: true,
@@ -63,6 +65,9 @@ class DPDButton extends StatelessWidget {
               left: 8,
             ),
             child: TextFormField(
+              autofocus: true,
+              focusNode: searchFocusNode,
+              canRequestFocus: true,
               expands: true,
               maxLines: null,
               controller: searchController,
@@ -87,7 +92,9 @@ class DPDButton extends StatelessWidget {
           },
         ),
         onMenuStateChange: (isOpen) {
-          if (!isOpen) {
+          if (isOpen) {
+            searchFocusNode.requestFocus();
+          } else {
             searchController.clear();
           }
         },

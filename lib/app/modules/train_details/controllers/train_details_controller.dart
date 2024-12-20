@@ -39,6 +39,7 @@ class TrainDetailsController extends GetxController {
   final Set<Tuple> processedRoutesSet = {};
   final Set<Pair> finalProcessedRoutesSet = {};
   final Set<String> tempFinal = {};
+  RxInt counter = 0.obs;
 
   // String is "train_model"
   final RxMap<String, List<Train>> trainMap = RxMap({});
@@ -78,7 +79,7 @@ class TrainDetailsController extends GetxController {
       'from_city': from,
       'to_city': to,
       'date_of_journey': date.value ?? '',
-      'seat_class': travelClass.value ?? '',
+      'seat_class': 'S_CHAIR',
     };
 
     Uri uri = Uri.http(base, path, queryParams);
@@ -95,7 +96,7 @@ class TrainDetailsController extends GetxController {
     matchingLists.value = Get.arguments['matching'] ?? '';
 
     passMatchingListsToProcessRoutes();
-    // getFinalTrainData();
+    getFinalTrainData();
   }
 
   Future<void> getFinalTrainData() async {
@@ -106,10 +107,16 @@ class TrainDetailsController extends GetxController {
       TrainDetailsResponse? res = await fetchTrainDetails(fullURL);
       if (res != null) {
         for (Train train in res.data?.trains ?? []) {
-          if (trainMap.containsKey(train.trainModel)) {
-            trainMap[train.trainModel]?.add(train);
-          } else {
-            trainMap[train.trainModel ?? ''] = [train];
+          if (train.seatTypes!.isNotEmpty &&
+              train.seatTypes!.any((seatType) =>
+                  seatType.seatCounts!.online! > 0 ||
+                  seatType.seatCounts!.offline! > 0)) {
+            counter.value++;
+            if (trainMap.containsKey(train.trainModel)) {
+              trainMap[train.trainModel]?.add(train);
+            } else {
+              trainMap[train.trainModel ?? ''] = [train];
+            }
           }
         }
       }

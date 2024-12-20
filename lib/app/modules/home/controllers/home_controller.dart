@@ -14,15 +14,16 @@ class HomeController extends GetxController {
   TextEditingController dateText = TextEditingController();
 
   final List<String> seatClass = [
-    'AC_B',
-    'AC_S',
-    'SNIGDHA',
-    'F_BERTH',
-    'F_SEAT',
-    'F_CHAIR',
-    'S_CHAIR',
-    'SHOVAN',
-    'SHULOV',
+    'Any Type',
+    'Only S_CHAIR',
+    'Only SNIGDHA',
+    'Only F_CHAIR',
+    'Only SHOVAN',
+    'Only SHULOV',
+    'Only F_SEAT',
+    'Only F_BERTH',
+    'Only AC_S',
+    'Only AC_B',
   ];
 
   List<String> get allStations => allStationsAvailable;
