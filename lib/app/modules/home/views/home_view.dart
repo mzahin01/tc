@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tc/app/modules/train_details/controllers/train_details_controller.dart';
+import 'package:tc/app/modules/train_details/widget/all_trains_code.dart';
 import 'package:tc/app/shared/const/image_asset.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/responseive_view/response_view.dart';
@@ -14,6 +16,14 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        for (String train in trainCodes) {
+          TrainDetailsController().checkIfStopsInRoute(train).then((value) {
+            print('Train: $train');
+            print('Value: $value');
+          });
+        }
+      }),
       body: Obx(() {
         return SafeArea(
           child: SingleChildScrollView(
