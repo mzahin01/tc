@@ -154,7 +154,7 @@ class TrainDetailsController extends GetxController {
         finalProcessedRoutesSet.add(Pair(temp[0], temp[1]));
       }
     }
-    print(finalProcessedRoutesSet);
+    // print(finalProcessedRoutesSet);
   }
 
   Future<TrainDetailsResponse?> fetchTrainDetails(String fullURL) async {
