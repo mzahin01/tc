@@ -1,9 +1,5 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:tc/app/modules/train_details/controllers/train_details_controller.dart';
-import 'package:tc/app/modules/train_details/widget/all_trains_code.dart';
 import 'package:tc/app/shared/const/image_asset.dart';
 import 'package:tc/app/shared/widget/animated/crossfade_wrapper_container.dart';
 import 'package:tc/app/shared/widget/responseive_view/response_view.dart';
@@ -18,13 +14,13 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        for (String train in trainCodes) {
-          TrainDetailsController().checkIfStopsInRoute(train).then((value) {
-            writeToFile('$train\n$value\n');
-          });
-        }
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   for (String train in trainCodes) {
+      //     TrainDetailsController().checkIfStopsInRoute(train).then((value) {
+      //       writeToFile('$train\n$value\n');
+      //     });
+      //   }
+      // }),
       body: Obx(() {
         return SafeArea(
           child: SingleChildScrollView(
@@ -46,15 +42,15 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Future<void> writeToFile(String content) async {
-    try {
-      final downloadsPath = '/Users/zahin/Downloads';
-      final file = File('$downloadsPath/tt.txt');
-      await file.writeAsString(content, mode: FileMode.append);
-    } catch (e) {
-      print('Error writing to file: $e');
-    }
-  }
+  // Future<void> writeToFile(String content) async {
+  //   try {
+  //     final downloadsPath = '/Users/zahin/Downloads';
+  //     final file = File('$downloadsPath/tt.txt');
+  //     await file.writeAsString(content, mode: FileMode.append);
+  //   } catch (e) {
+  //     print('Error writing to file: $e');
+  //   }
+  // }
 
   // Mobile layout
   Widget buildMobileView() {

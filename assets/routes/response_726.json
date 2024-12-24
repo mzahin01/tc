@@ -1,0 +1,131 @@
+{
+    "data": {
+        "days": [
+            "Fri",
+            "Sat",
+            "Sun",
+            "Mon",
+            "Tue",
+            "Thu"
+        ],
+        "routes": [
+            {
+                "city": "Dhaka",
+                "departure_time": "08:00 am BST",
+                "halt": null,
+                "duration": null,
+                "arrival_time": null
+            },
+            {
+                "city": "Bhanga",
+                "arrival_time": "09:08 am BST",
+                "departure_time": "09:11 am BST",
+                "halt": "03",
+                "duration": "01:08"
+            },
+            {
+                "city": "Faridpur",
+                "arrival_time": "09:39 am BST",
+                "departure_time": "09:42 am BST",
+                "halt": "03",
+                "duration": "00:28"
+            },
+            {
+                "city": "Rajbari",
+                "arrival_time": "10:15 am BST",
+                "departure_time": "10:25 am BST",
+                "halt": "10",
+                "duration": "00:33"
+            },
+            {
+                "city": "Pangsha",
+                "arrival_time": "10:59 am BST",
+                "departure_time": "11:01 am BST",
+                "halt": "02",
+                "duration": "00:34"
+            },
+            {
+                "city": "Kushtia_Court",
+                "arrival_time": "11:35 am BST",
+                "departure_time": "11:38 am BST",
+                "halt": "03",
+                "duration": "00:34"
+            },
+            {
+                "city": "Poradaha",
+                "arrival_time": "11:49 am BST",
+                "departure_time": "11:52 am BST",
+                "halt": "03",
+                "duration": "00:11"
+            },
+            {
+                "city": "Alamdanga",
+                "arrival_time": "12:07 pm BST",
+                "departure_time": "12:09 pm BST",
+                "halt": "02",
+                "duration": "00:15"
+            },
+            {
+                "city": "Chuadanga",
+                "arrival_time": "12:25 pm BST",
+                "departure_time": "12:28 pm BST",
+                "halt": "03",
+                "duration": "00:16"
+            },
+            {
+                "city": "Darshana_Halt",
+                "arrival_time": "12:50 pm BST",
+                "departure_time": "12:53 pm BST",
+                "halt": "03",
+                "duration": "00:22"
+            },
+            {
+                "city": "Kotchandpur",
+                "arrival_time": "01:16 pm BST",
+                "departure_time": "01:18 pm BST",
+                "halt": "02",
+                "duration": "00:23"
+            },
+            {
+                "city": "Mubarakganj",
+                "arrival_time": "01:34 pm BST",
+                "departure_time": "01:36 pm BST",
+                "halt": "02",
+                "duration": "00:16"
+            },
+            {
+                "city": "Jashore",
+                "arrival_time": "02:05 pm BST",
+                "departure_time": "02:08 pm BST",
+                "halt": "03",
+                "duration": "00:29"
+            },
+            {
+                "city": "Noapara",
+                "arrival_time": "02:48 pm BST",
+                "departure_time": "02:51 pm BST",
+                "halt": "03",
+                "duration": "00:40"
+            },
+            {
+                "city": "Daulatpur",
+                "arrival_time": "03:15 pm BST",
+                "departure_time": "03:17 pm BST",
+                "halt": "02",
+                "duration": "00:24"
+            },
+            {
+                "city": "Khulna",
+                "arrival_time": "03:40 pm BST",
+                "halt": null,
+                "duration": "00:23",
+                "departure_time": null
+            }
+        ],
+        "total_duration": "07:40",
+        "train_name": "SUNDARBAN EXPRESS (726)"
+    },
+    "extra": {
+        "hash": "F56E10ED0AC40666508830E7F1F74473"
+    }
+}

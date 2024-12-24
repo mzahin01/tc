@@ -132,44 +132,44 @@ class TrainDetailsController extends GetxController {
     to.value = initTo;
   }
 
-  Future<RouteDetailsResponse?> checkIfStopsInRoute(String? trainModel) async {
-    String fullURL = 'https://railspaapi.shohoz.com/v1.0/web/train-routes';
+  // Future<RouteDetailsResponse?> checkIfStopsInRoute(String? trainModel) async {
+  //   String fullURL = 'https://railspaapi.shohoz.com/v1.0/web/train-routes';
 
-    try {
-      final response = await http.post(
-        Uri.parse(fullURL),
-        headers: {
-          'User-Agent':
-              'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-          'Accept':
-              'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          'Accept-Language': 'en-US,en;q=0.9',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': trainModel,
-          'departure_date_time': '2024-12-24',
-        }),
-      );
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse(fullURL),
+  //       headers: {
+  //         'User-Agent':
+  //             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+  //         'Accept':
+  //             'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  //         'Accept-Language': 'en-US,en;q=0.9',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: jsonEncode({
+  //         'model': trainModel,
+  //         'departure_date_time': '2024-12-24',
+  //       }),
+  //     );
 
-      if (response.statusCode == 200) {
-        RouteDetailsResponse routeDetailsResponse =
-            RouteDetailsResponse.fromJson(jsonDecode(response.body));
-        print(routeDetailsResponse.toString());
-        return routeDetailsResponse;
-      } else {
-        if (kDebugMode) {
-          print('Error: ${response.statusCode}');
-        }
-        return null;
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print('An error occurred: $e');
-      }
-      return null;
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       RouteDetailsResponse routeDetailsResponse =
+  //           RouteDetailsResponse.fromJson(jsonDecode(response.body));
+  //       // print(routeDetailsResponse.toString());
+  //       return routeDetailsResponse;
+  //     } else {
+  //       if (kDebugMode) {
+  //         print('Error: ${response.statusCode}');
+  //       }
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print('An error occurred: $e');
+  //     }
+  //     return null;
+  //   }
+  // }
 
   void passMatchingListsToProcessRoutes() {
     final List<List<String>> routesToProcess = [];
